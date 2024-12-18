@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <!-- Título principal -->
+        <a class="navbar-brand" href="/">Vehículos</a>
+
+        <!-- Botón para colapsar en pantallas pequeñas -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido del navbar -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Primera lista (Inicio, Agregar, Listar) -->
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/vehiculo/add">Agregar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/vehiculo/list">Listar</a>
+                </li>
+            </ul>
+
+            <!-- Segunda lista (a la derecha) -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/vehiculo/logout">Salir</a>  <!-- Cambiado para usar la ruta de logout -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hola, {{ user.username }}</a>
+                </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vehiculo/signin">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}
